@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحاضرة الثانية | HTML Elements & Content | Sunshine T Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* ===== ألوان طبيعية هادئة - Forest & Sunshine ===== */
+            --primary: #4A7C59;
+            --primary-dark: #2D5F3F;
+            --primary-light: #7BA889;
+            --primary-soft: #D4E5D8;
+
+            --secondary: #D4A574;
+            --secondary-dark: #B8895A;
+            --secondary-light: #E8C9A0;
+
+            --bg-main: #FAF7F2;
+            --bg-cream: #F5EFE6;
+            --bg-card: #FFFFFF;
+            --bg-soft: #EDE5D8;
+            --bg-code: #F9F6F0;
+
+            --text-dark: #2C1810;
+            --text-body: #4A3728;
+            --text-muted: #6B5744;
+            --text-light: #8B7356;
+
+            --border: #E5DCC8;
+            --border-soft: #EDE5D8;
+
+            --success: #5B8C5A;
+            --success-bg: #E3EDDF;
+            --info: #5B8BA0;
+            --info-bg: #DEE8EC;
+            --warning: #C89B6C;
+            --warning-bg: #F0E4D4;
+            --danger: #B85C5C;
+            --danger-bg: #F0DCDC;
+            --purple: #8B7BA8;
+            --purple-bg: #E5DFED;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-body);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== Header ========== */
+        header {
+            background: linear-gradient(135deg, #FAF7F2 0%, #EDE5D8 100%);
+            border-bottom: 3px solid var(--primary);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(74, 124, 89, 0.08);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.25);
+        }
+
+        .lecture-badge {
+            background: var(--bg-card);
+            border: 2px solid var(--primary);
+            color: var(--primary-dark);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* ========== Hero ========== */
+        .hero {
+            padding: 70px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #D4E5D8 0%, #E8C9A0 50%, #F5EFE6 100%);
+            border: 2px solid var(--primary-light);
+            border-radius: 24px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(74, 124, 89, 0.12);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: var(--primary-dark);
+            color: var(--secondary-light);
+            padding: 8px 22px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 18px;
+            color: var(--text-dark);
+            line-height: 1.3;
+            position: relative;
+        }
+
+        .hero h1 span {
+            color: var(--primary-dark);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-body);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* ========== Sections ========== */
+        section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--border);
+        }
+
+        .section-title .title-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            color: white;
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.2);
+        }
+
+        /* ========== Cards ========== */
+        .card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(74, 124, 89, 0.04);
+        }
+
+        .card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 8px 24px rgba(74, 124, 89, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            color: var(--text-body);
+            margin-bottom: 12px;
+        }
+
+        .card strong {
+            color: var(--text-dark);
+        }
+
+        /* ========== Objectives ========== */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .objective-item {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-right: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .objective-item:hover {
+            border-color: var(--primary-light);
+            border-right-color: var(--secondary);
+            background: var(--bg-cream);
+        }
+
+        .objective-number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            flex-shrink: 0;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(74, 124, 89, 0.25);
+        }
+
+        .objective-item h4 {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+        }
+
+        .objective-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ========== Review Box ========== */
+        .review-box {
+            background: linear-gradient(135deg, var(--purple-bg) 0%, #F5F3FF 100%);
+            border: 2px solid var(--purple);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 30px 0;
+        }
+
+        .review-box h3 {
+            color: var(--purple);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .review-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .review-list li {
+            background: var(--bg-card);
+            border: 1px solid #D4C9E8;
+            border-radius: 10px;
+            padding: 12px 16px;
+            padding-right: 40px;
+            position: relative;
+            color: var(--text-body);
+        }
+
+        .review-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--purple);
+            font-weight: 900;
+            font-size: 1.1rem;
+        }
+
+        /* ========== Analogy Box ========== */
+        .analogy-box {
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-soft) 100%);
+            border: 2px dashed var(--secondary);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 30px 0;
+        }
+
+        .analogy-box h3 {
+            color: var(--secondary-dark);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .analogy-list {
+            list-style: none;
+        }
+
+        .analogy-list li {
+            padding: 12px 0;
+            padding-right: 40px;
+            position: relative;
+            color: var(--text-body);
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .analogy-list li:last-child {
+            border-bottom: none;
+        }
+
+        .analogy-list li::before {
+            content: '💡';
+            position: absolute;
+            right: 0;
+            top: 12px;
+            font-size: 1.2rem;
+        }
+
+        .analogy-list li strong {
+            color: var(--primary-dark);
+        }
+
+        /* ========== Code Blocks ========== */
+        .code-wrapper {
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            background: var(--bg-code);
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.06);
+        }
+
+        .code-header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-lang {
+            background: var(--text-dark);
+            color: var(--secondary-light);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .code-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .code-dots span:nth-child(1) { background: #E8A5A5; }
+        .code-dots span:nth-child(2) { background: #E8D4A0; }
+        .code-dots span:nth-child(3) { background: #A5D4B0; }
+
+        pre {
+            padding: 20px;
+            overflow-x: auto;
+            margin: 0;
+            background: var(--bg-code);
+        }
+
+        pre code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+            display: block;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .tag { color: #A0522D; font-weight: 600; }
+        .attr { color: #2E6B8A; font-weight: 600; }
+        .value { color: #4A7C59; }
+        .comment { color: #8B7356; font-style: italic; }
+        .text { color: var(--text-dark); }
+        .doctype { color: #A0522D; font-weight: 700; }
+
+        /* ========== Info Boxes ========== */
+        .info-box {
+            background: var(--info-bg);
+            border: 2px solid #B8D4DE;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .info-box h4 {
+            color: #2E6B8A;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .info-box p {
+            color: #1F4A5E;
+            font-size: 0.95rem;
+        }
+
+        .warning-box {
+            background: var(--warning-bg);
+            border: 2px solid #E5D4B8;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 {
+            color: var(--secondary-dark);
+            margin-bottom: 8px;
+        }
+
+        .warning-box p {
+            color: var(--text-body);
+            font-size: 0.95rem;
+        }
+
+        .success-box {
+            background: var(--success-bg);
+            border: 2px solid #B8D4B5;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .success-box h4 {
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .success-box p {
+            color: #2D5F3F;
+            font-size: 0.95rem;
+        }
+
+        .danger-box {
+            background: var(--danger-bg);
+            border: 2px solid #E0B8B8;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .danger-box h4 {
+            color: #8B3A3A;
+            margin-bottom: 8px;
+        }
+
+        .danger-box p {
+            color: #5C2828;
+            font-size: 0.95rem;
+        }
+
+        /* ========== Element Table ========== */
+        .element-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .element-table thead {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .element-table th {
+            padding: 14px 18px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .element-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-soft);
+            color: var(--text-body);
+        }
+
+        .element-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .element-table tr:hover {
+            background: var(--bg-cream);
+        }
+
+        .element-table code {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: var(--primary-dark);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            font-weight: 600;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* ========== Tag Card Grid ========== */
+        .tag-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 25px 0;
+        }
+
+        .tag-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tag-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .tag-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(74, 124, 89, 0.1);
+        }
+
+        .tag-card .tag-name {
+            font-family: 'Fira Code', monospace;
+            background: var(--bg-code);
+            color: var(--primary-dark);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
+            direction: ltr;
+        }
+
+        .tag-card h5 {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .tag-card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        /* ========== Debug Section ========== */
+        .debug-box {
+            background: var(--danger-bg);
+            border: 2px solid var(--danger);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 30px 0;
+        }
+
+        .debug-box h3 {
+            color: #8B3A3A;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .debug-box p {
+            color: #5C2828;
+            margin-bottom: 15px;
+        }
+
+        .debug-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .debug-wrong, .debug-right {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .debug-wrong {
+            border: 2px solid var(--danger);
+        }
+
+        .debug-right {
+            border: 2px solid var(--success);
+        }
+
+        .debug-label {
+            padding: 8px 15px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .debug-wrong .debug-label {
+            background: var(--danger);
+            color: white;
+        }
+
+        .debug-right .debug-label {
+            background: var(--success);
+            color: white;
+        }
+
+        .debug-wrong pre, .debug-right pre {
+            background: var(--bg-card);
+            padding: 15px;
+            margin: 0;
+        }
+
+        /* ========== Quiz Section ========== */
+        .quiz-section {
+            background: var(--bg-card);
+            border: 3px solid var(--success);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(91, 140, 90, 0.1);
+        }
+
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed var(--success-bg);
+        }
+
+        .quiz-header-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--success) 0%, var(--primary-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 4px 12px rgba(91, 140, 90, 0.25);
+        }
+
+        .quiz-header h2 {
+            color: var(--primary-dark);
+            font-size: 1.6rem;
+        }
+
+        .quiz-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .question {
+            background: var(--bg-cream);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            border-color: var(--primary-light);
+            background: var(--bg-soft);
+        }
+
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(74, 124, 89, 0.25);
+        }
+
+        .question h4 {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .options {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .options li {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text-body);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .options li:hover {
+            border-color: var(--primary-light);
+            background: var(--bg-cream);
+            color: var(--text-dark);
+        }
+
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-soft);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            flex-shrink: 0;
+        }
+
+        /* ========== Homework Section ========== */
+        .homework-section {
+            background: var(--bg-card);
+            border: 3px solid var(--info);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(91, 139, 160, 0.1);
+        }
+
+        .homework-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed var(--info-bg);
+        }
+
+        .homework-header-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--info) 0%, #3D6B80 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 4px 12px rgba(91, 139, 160, 0.25);
+        }
+
+        .homework-header h2 {
+            color: #2E6B8A;
+            font-size: 1.6rem;
+        }
+
+        .homework-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .homework-item {
+            background: var(--bg-cream);
+            border: 2px solid var(--border);
+            border-right: 5px solid var(--info);
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .homework-item:hover {
+            border-color: var(--info);
+            background: var(--info-bg);
+        }
+
+        .homework-item h4 {
+            color: #2E6B8A;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .homework-item p {
+            color: var(--text-body);
+            margin-bottom: 10px;
+        }
+
+        .homework-item ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .homework-item ul li {
+            padding: 6px 0;
+            padding-right: 25px;
+            position: relative;
+            color: var(--text-body);
+            font-size: 0.95rem;
+        }
+
+        .homework-item ul li::before {
+            content: '◆';
+            position: absolute;
+            right: 0;
+            color: var(--info);
+            font-size: 0.7rem;
+            top: 10px;
+        }
+
+        /* ========== Summary ========== */
+        .summary-box {
+            background: linear-gradient(135deg, var(--primary-soft) 0%, var(--bg-soft) 100%);
+            border: 3px solid var(--primary);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(74, 124, 89, 0.1);
+        }
+
+        .summary-box h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 10px 0;
+            padding-right: 35px;
+            position: relative;
+            color: var(--text-body);
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
+
+        /* ========== Next Lecture Box ========== */
+        .next-box {
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-soft) 100%);
+            border: 2px dashed var(--secondary);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .next-box h3 {
+            color: var(--secondary-dark);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .next-box p {
+            color: var(--text-body);
+            font-size: 1.05rem;
+        }
+
+        .next-box .next-topic {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        /* ========== Footer ========== */
+        footer {
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-soft) 100%);
+            border-top: 3px solid var(--primary);
+            padding: 40px 0;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        footer .logo {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        footer .motto {
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+
+        /* ========== Inline Code ========== */
+        code.inline {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            padding: 2px 8px;
+            border-radius: 5px;
+            color: var(--primary-dark);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            font-weight: 600;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* ========== Print Styles ========== */
+        @media print {
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+
+            body {
+                background: white;
+                font-size: 11pt;
+                line-height: 1.5;
+            }
+
+            header {
+                position: static;
+                box-shadow: none;
+            }
+
+            .hero, section, .card, .question, .homework-item {
+                page-break-inside: avoid;
+            }
+
+            h1, h2, h3, h4 {
+                page-break-after: avoid;
+            }
+
+            .code-wrapper {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 1.5rem; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .tag-grid { grid-template-columns: 1fr; }
+            .debug-comparison { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== Header ========== -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    <span>Sunshine T Academy</span>
+                </div>
+                <div class="lecture-badge">Frontend Level 1 • المحاضرة الثانية</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- ========== Hero ========== -->
+        <section class="hero">
+            <span class="hero-tag">LECTURE 02</span>
+            <h1>HTML Elements <span>& Content</span></h1>
+            <p>هنشوف أهم عناصر HTML اللي هتستخدمها في كل صفحة: Headings, Paragraphs, Lists, Links, Images، وإزاي ننظم ملفات مشروعك صح.</p>
+        </section>
+
+        <!-- ========== Review Previous ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🔄</div>
+                <span>مراجعة سريعة</span>
+            </h2>
+
+            <div class="review-box">
+                <h3>📚 من المحاضرة اللي فاتت</h3>
+                <ul class="review-list">
+                    <li>Web Development = بناء المواقع على الإنترنت</li>
+                    <li>Frontend = الواجهة الأمامية (HTML + CSS + JS)</li>
+                    <li>HTML = لغة توصيف لبناء هيكل الصفحة</li>
+                    <li>هيكل الصفحة: DOCTYPE → html → head → body</li>
+                    <li>head = معلومات الصفحة، body = المحتوى الظاهر</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>🎯 هدف النهاردة</h4>
+                <p>هنشوف <strong>العناصر (Elements)</strong> اللي جوه الـ body، وإزاي نستخدمها لبناء محتوى حقيقي. كمان هنتعلم إزاي ننظم ملفات المشروع من البداية — وهي مهارة مهمة جداً لأي Developer محترف.</p>
+            </div>
+        </section>
+
+        <!-- ========== Learning Objectives ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🎯</div>
+                <span>الأهداف التعليمية</span>
+            </h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">في نهاية المحاضرة، الطالب هيقدر:</p>
+
+            <div class="objectives-grid">
+                <div class="objective-item">
+                    <div class="objective-number">1</div>
+                    <div>
+                        <h4>فهم HTML Elements</h4>
+                        <p>يفرق بين Tag و Element و Attribute</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">2</div>
+                    <div>
+                        <h4>استخدام Headings</h4>
+                        <p>يستخدم h1 إلى h6 بشكل صحيح ومنظم</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">3</div>
+                    <div>
+                        <h4>كتابة Paragraphs و Text</h4>
+                        <p>يستخدم p, br, hr, strong, em بشكل صحيح</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">4</div>
+                    <div>
+                        <h4>بناء Lists</h4>
+                        <p>يبني قوائم مرتبة وغير مرتبة ومتداخلة</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">5</div>
+                    <div>
+                        <h4>إضافة Links و Images</h4>
+                        <p>يربط صفحات ويضيف صور مع Attributes صحيحة</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">6</div>
+                    <div>
+                        <h4>تنظيم ملفات المشروع</h4>
+                        <p>ينظم الملفات والمجلدات بشكل احترافي</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== Elements & Tags ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🧱</div>
+                <span>Elements, Tags, Attributes</span>
+            </h2>
+
+            <div class="card">
+                <h3>📖 المفاهيم الأساسية</h3>
+                <p>قبل ما ندخل في العناصر، لازم نفهم 3 مصطلحات مهمة:</p>
+            </div>
+
+            <div class="tag-grid">
+                <div class="tag-card">
+                    <span class="tag-name">&lt;p&gt;...&lt;/p&gt;</span>
+                    <h5>Element (العنصر)</h5>
+                    <p>الوحدة الأساسية في HTML. مكون من Opening Tag + Content + Closing Tag</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;tag&gt;</span>
+                    <h5>Tag (الوسم)</h5>
+                    <p>العلامة اللي بتفتح أو بتقفل العنصر. زي: &lt;p&gt; أو &lt;/p&gt;</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">attr="value"</span>
+                    <h5>Attribute (الصفة)</h5>
+                    <p>معلومات إضافية جوه الـ Opening Tag. زي: href, src, class, id</p>
+                </div>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">تشريح Element</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="comment">&lt;!-- ده Element كامل --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"https://example.com"</span><span class="tag">&gt;</span><span class="text">اضغط هنا</span><span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Opening Tag: &lt;a href="..."&gt; --&gt;</span>
+<span class="comment">&lt;!-- Content: "اضغط هنا" --&gt;</span>
+<span class="comment">&lt;!-- Closing Tag: &lt;/a&gt; --&gt;</span>
+<span class="comment">&lt;!-- Attribute: href="https://example.com" --&gt;</span></code></pre>
+            </div>
+
+            <div class="analogy-box">
+                <h3>💡 تشبيه من الحياة</h3>
+                <ul class="analogy-list">
+                    <li><strong>Element</strong> = الأوضة كاملة (حيطة + أثاث + الناس جواها)</li>
+                    <li><strong>Tag</strong> = باب الأوضة (اللي بيدخل واللي بيخرج)</li>
+                    <li><strong>Attribute</strong> = مواصفات الباب (لونه، مقاسه، قفله)</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>📌 Self-Closing Tags</h4>
+                <p>في عناصر <strong>ما بتقفلش</strong> لأن مفيش جواها محتوى. زي: <code class="inline">&lt;img&gt;</code>, <code class="inline">&lt;br&gt;</code>, <code class="inline">&lt;hr&gt;</code>, <code class="inline">&lt;input&gt;</code></p>
+            </div>
+        </section>
+
+        <!-- ========== Headings ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">📰</div>
+                <span>Headings — العناوين</span>
+            </h2>
+
+            <div class="card">
+                <h3>🔹 مستويات العناوين</h3>
+                <p>في HTML عندنا <strong>6 مستويات</strong> من العناوين، من <code class="inline">&lt;h1&gt;</code> (الأكبر والأهم) لـ <code class="inline">&lt;h6&gt;</code> (الأصغر).</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="tag">&lt;h1&gt;</span><span class="text">عنوان رئيسي — الأهم في الصفحة</span><span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span><span class="text">عنوان فرعي</span><span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span><span class="text">عنوان أصغر</span><span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;h4&gt;</span><span class="text">عنوان المستوى الرابع</span><span class="tag">&lt;/h4&gt;</span>
+<span class="tag">&lt;h5&gt;</span><span class="text">عنوان المستوى الخامس</span><span class="tag">&lt;/h5&gt;</span>
+<span class="tag">&lt;h6&gt;</span><span class="text">عنوان المستوى السادس — الأصغر</span><span class="tag">&lt;/h6&gt;</span></code></pre>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ قواعد مهمة للعناوين</h4>
+                <p>1. استخدم <code class="inline">&lt;h1&gt;</code> <strong>مرة واحدة فقط</strong> في كل صفحة (العنوان الرئيسي).</p>
+                <p>2. متقفزش من <code class="inline">&lt;h2&gt;</code> لـ <code class="inline">&lt;h4&gt;</code> مباشرة — اتبع الترتيب.</p>
+                <p>3. العناوين مهمة جداً لـ <strong>SEO</strong> و <strong>Accessibility</strong> (القراءات الصوتية).</p>
+            </div>
+        </section>
+
+        <!-- ========== Paragraphs & Text ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">📝</div>
+                <span>Paragraphs & Text Formatting</span>
+            </h2>
+
+            <div class="card">
+                <h3>🔹 الفقرات &lt;p&gt;</h3>
+                <p>نستخدم <code class="inline">&lt;p&gt;</code> لكتابة أي فقرة نصية. المتصفح بيضيف مسافة تلقائياً بين الفقرات.</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="tag">&lt;p&gt;</span><span class="text">دي أول فقرة في الصفحة.</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span><span class="text">ودي فقرة تانية، المتصفح هيفصل بينهم بمسافة.</span><span class="tag">&lt;/p&gt;</span></code></pre>
+            </div>
+
+            <div class="card">
+                <h3>🔹 عناصر النص الأخرى</h3>
+                <table class="element-table">
+                    <thead>
+                        <tr>
+                            <th>العنصر</th>
+                            <th>الوظيفة</th>
+                            <th>مثال</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>&lt;br&gt;</code></td>
+                            <td>سطر جديد (Break)</td>
+                            <td>سطر أول<br>سطر تاني</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;hr&gt;</code></td>
+                            <td>خط أفقي فاصل</td>
+                            <td>─────</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;strong&gt;</code></td>
+                            <td>نص مهم (bold + معنى)</td>
+                            <td><strong>مهم جداً</strong></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;em&gt;</code></td>
+                            <td>تأكيد (italic + معنى)</td>
+                            <td><em>تأكيد</em></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;mark&gt;</code></td>
+                            <td>نص مظلل (أصفر)</td>
+                            <td><mark>مظلل</mark></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;small&gt;</code></td>
+                            <td>نص صغير</td>
+                            <td><small>حقوق النشر</small></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;sub&gt;</code></td>
+                            <td>نص سفلي (H₂O)</td>
+                            <td>H<sub>2</sub>O</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;sup&gt;</code></td>
+                            <td>نص علوي (x²)</td>
+                            <td>x<sup>2</sup></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">مثال شامل</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="tag">&lt;p&gt;</span>
+    <span class="text">الماء تركيبه الكيميائي هو H</span><span class="tag">&lt;sub&gt;</span><span class="text">2</span><span class="tag">&lt;/sub&gt;</span><span class="text">O.</span>
+    <span class="tag">&lt;br&gt;</span>
+    <span class="text">معادلة المساحة: م = ط </span><span class="tag">&lt;sup&gt;</span><span class="text">2</span><span class="tag">&lt;/sup&gt;</span>
+<span class="tag">&lt;/p&gt;</span>
+
+<span class="tag">&lt;p&gt;</span>
+    <span class="text">ده نص </span><span class="tag">&lt;strong&gt;</span><span class="text">مهم جداً</span><span class="tag">&lt;/strong&gt;</span><span class="text">، وده </span><span class="tag">&lt;em&gt;</span><span class="text">تأكيد</span><span class="tag">&lt;/em&gt;</span><span class="text">.</span>
+    <span class="tag">&lt;br&gt;</span>
+    <span class="text">وكلمة </span><span class="tag">&lt;mark&gt;</span><span class="text">مظلة</span><span class="tag">&lt;/mark&gt;</span><span class="text">.</span>
+<span class="tag">&lt;/p&gt;</span></code></pre>
+            </div>
+
+            <div class="info-box">
+                <h4>💡 نصيحة احترافية</h4>
+                <p>استخدم <code class="inline">&lt;strong&gt;</code> بدل <code class="inline">&lt;b&gt;</code>، و <code class="inline">&lt;em&gt;</code> بدل <code class="inline">&lt;i&gt;</code>. السبب؟ لأن <code class="inline">&lt;strong&gt;</code> و <code class="inline">&lt;em&gt;</code> ليهم <strong>معنى دلالي</strong> (Semantic) — بيوضحوا للمتصفح ومحركات البحث إن النص ده مهم أو فيه تأكيد.</p>
+            </div>
+        </section>
+
+        <!-- ========== Lists ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">📋</div>
+                <span>Lists — القوائم</span>
+            </h2>
+
+            <div class="card">
+                <h3>🔹 أنواع القوائم</h3>
+                <p>في HTML عندنا <strong>3 أنواع</strong> من القوائم:</p>
+            </div>
+
+            <div class="tag-grid">
+                <div class="tag-card">
+                    <span class="tag-name">&lt;ul&gt;</span>
+                    <h5>Unordered List</h5>
+                    <p>قائمة غير مرتبة (نقط). للترتيب مش مهم.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;ol&gt;</span>
+                    <h5>Ordered List</h5>
+                    <p>قائمة مرتبة (أرقام). للترتيب مهم.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;li&gt;</span>
+                    <h5>List Item</h5>
+                    <p>عنصر واحد داخل القائمة (داخل ul أو ol).</p>
+                </div>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">قوائم</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="comment">&lt;!-- قائمة غير مرتبة (نقط) --&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+    <span class="tag">&lt;li&gt;</span><span class="text">HTML</span><span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span><span class="text">CSS</span><span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span><span class="text">JavaScript</span><span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="comment">&lt;!-- قائمة مرتبة (أرقام) --&gt;</span>
+<span class="tag">&lt;ol&gt;</span>
+    <span class="tag">&lt;li&gt;</span><span class="text">افتح VS Code</span><span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span><span class="text">اعمل ملف جديد</span><span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span><span class="text">احفظ الملف بامتداد .html</span><span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span></code></pre>
+            </div>
+
+            <div class="card">
+                <h3>🔹 القوائم المتداخلة (Nested Lists)</h3>
+                <p>ممكن تحط قائمة <strong>جوه قائمة</strong> تانية. ده بيحصل كتير في القوائم الفرعية.</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">Nested Lists</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="tag">&lt;ul&gt;</span>
+    <span class="tag">&lt;li&gt;</span>
+        <span class="text">Frontend</span>
+        <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="text">HTML</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="text">CSS</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="text">JavaScript</span><span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>
+        <span class="text">Backend</span>
+        <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="text">Node.js</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="text">Python</span><span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></code></pre>
+            </div>
+        </section>
+
+        <!-- ========== Links ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🔗</div>
+                <span>Links — الروابط</span>
+            </h2>
+
+            <div class="card">
+                <h3>🔹 عنصر &lt;a&gt; (Anchor)</h3>
+                <p>الروابط هي <strong>قلب الويب</strong>. من غيرها مفيش ويب أصلاً. بنستخدم عنصر <code class="inline">&lt;a&gt;</code> لإنشاء رابط.</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="comment">&lt;!-- رابط خارجي --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"https://google.com"</span><span class="tag">&gt;</span><span class="text">روح Google</span><span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- رابط يفتح في Tab جديدة --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"https://google.com"</span> <span class="attr">target</span>=<span class="value">"_blank"</span><span class="tag">&gt;</span>
+    <span class="text">افتح في Tab جديدة</span>
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- رابط لصفحة تانية في نفس المشروع --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"about.html"</span><span class="tag">&gt;</span><span class="text">صفحة About</span><span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- رابط بـ title (Tooltip) --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"contact.html"</span> <span class="attr">title</span>=<span class="value">"تواصل معانا"</span><span class="tag">&gt;</span>
+    <span class="text">Contact</span>
+<span class="tag">&lt;/a&gt;</span></code></pre>
+            </div>
+
+            <div class="card">
+                <h3>🔍 أهم Attributes للروابط</h3>
+                <table class="element-table">
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>الوظيفة</th>
+                            <th>مثال</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>href</code></td>
+                            <td>عنوان الرابط (مطلوب)</td>
+                            <td>href="https://..."</td>
+                        </tr>
+                        <tr>
+                            <td><code>target</code></td>
+                            <td>فين يفتح الرابط</td>
+                            <td>target="_blank"</td>
+                        </tr>
+                        <tr>
+                            <td><code>title</code></td>
+                            <td>Tooltip عند الوقوف</td>
+                            <td>title="معلومة"</td>
+                        </tr>
+                        <tr>
+                            <td><code>rel</code></td>
+                            <td>العلاقة بين الصفحات (للأمان)</td>
+                            <td>rel="noopener noreferrer"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ أمان مهم</h4>
+                <p>لما تستخدم <code class="inline">target="_blank"</code> مع رابط خارجي، ضيف <code class="inline">rel="noopener noreferrer"</code> لأسباب أمنية:</p>
+                <p style="margin-top: 10px;"><code class="inline">&lt;a href="..." target="_blank" rel="noopener noreferrer"&gt;</code></p>
+            </div>
+        </section>
+
+        <!-- ========== Images ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🖼️</div>
+                <span>Images — الصور</span>
+            </h2>
+
+            <div class="card">
+                <h3>🔹 عنصر &lt;img&gt;</h3>
+                <p>عنصر <code class="inline">&lt;img&gt;</code> <strong>Self-closing</strong> — مفيش له Closing Tag. بيستخدم لعرض الصور في الصفحة.</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="comment">&lt;!-- صورة بسيطة --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"photo.jpg"</span> <span class="attr">alt</span>=<span class="value">"وصف الصورة"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- صورة بمقاس محدد --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"logo.png"</span> <span class="attr">alt</span>=<span class="value">"شعار الشركة"</span> <span class="attr">width</span>=<span class="value">"200"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- صورة من الإنترنت --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"https://example.com/image.jpg"</span> <span class="attr">alt</span>=<span class="value">"وصف"</span><span class="tag">&gt;</span></code></pre>
+            </div>
+
+            <div class="card">
+                <h3>🔍 أهم Attributes للصور</h3>
+                <table class="element-table">
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>الوظيفة</th>
+                            <th>ملاحظات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>src</code></td>
+                            <td>مصدر الصورة (مطلوب)</td>
+                            <td>مسار الملف أو رابط</td>
+                        </tr>
+                        <tr>
+                            <td><code>alt</code></td>
+                            <td>نص بديل (مطلوب)</td>
+                            <td>يظهر لو الصورة ما حملتش + للقراءات الصوتية</td>
+                        </tr>
+                        <tr>
+                            <td><code>width</code></td>
+                            <td>عرض الصورة</td>
+                            <td>بالبكسل</td>
+                        </tr>
+                        <tr>
+                            <td><code>height</code></td>
+                            <td>ارتفاع الصورة</td>
+                            <td>بالبكسل</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="danger-box">
+                <h4>🚨 ممنوع تنسى alt!</h4>
+                <p>Attribute <code class="inline">alt</code> <strong>إلزامي</strong> مش اختياري. ليه؟</p>
+                <p>1. <strong>Accessibility:</strong> المكفوفين بيسمعوا الوصف ده عن طريق قارئ الشاشة.</p>
+                <p>2. <strong>SEO:</strong> محركات البحث بتفهم الصورة من الـ alt.</p>
+                <p>3. <strong>Fallback:</strong> لو الصورة ما حملتش، النص ده بيظهر مكانها.</p>
+            </div>
+        </section>
+
+        <!-- ========== Comments ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">💬</div>
+                <span>Comments — التعليقات</span>
+            </h2>
+
+            <div class="card">
+                <h3>🔹 إزاي تضيف تعليقات</h3>
+                <p>التعليقات نص بيظهر <strong>في الكود بس</strong>، مش في الصفحة. مهمة جداً لتنظيم الكود وشرحه لنفسك أو لفريقك.</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="comment">&lt;!-- ده تعليق --&gt;</span>
+<span class="comment">&lt;!-- ده تعليق متعدد الأسطر
+     ممكن يكتب أكتر من سطر --&gt;</span>
+
+<span class="tag">&lt;h1&gt;</span><span class="text">مرحباً</span><span class="tag">&lt;/h1&gt;</span> <span class="comment">&lt;!-- العنوان الرئيسي --&gt;</span>
+<span class="tag">&lt;p&gt;</span><span class="text">فقرة تعريفية</span><span class="tag">&lt;/p&gt;</span> <span class="comment">&lt;!-- الوصف --&gt;</span></code></pre>
+            </div>
+
+            <div class="success-box">
+                <h4>✅ Best Practice</h4>
+                <p>استخدم التعليقات عشان:</p>
+                <p>• تقسّم الكود لأقسام واضحة (Header, Main, Footer).</p>
+                <p>• تشرح ليه كتبت كود معين.</p>
+                <p>• تخبي كود مؤقتاً وقت التطوير (مش للحذف).</p>
+            </div>
+        </section>
+
+        <!-- ========== File Organization ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">📁</div>
+                <span>تنظيم ملفات المشروع</span>
+            </h2>
+
+            <div class="card">
+                <h3>🔹 ليه التنظيم مهم؟</h3>
+                <p>أي مشروع حقيقي فيه <strong>مئات الملفات</strong>. لو مش منظم، هتضيع وقتك وانت بتدور. المحترفين بينظموا ملفات المشروع من <strong>أول يوم</strong>.</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">Project Structure</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code>my-website/
+├── index.html          <span class="comment">← الصفحة الرئيسية</span>
+├── about.html          <span class="comment">← صفحة About</span>
+├── contact.html        <span class="comment">← صفحة Contact</span>
+├── images/             <span class="comment">← مجلد الصور</span>
+│   ├── logo.png
+│   ├── hero.jpg
+│   └── team/
+├── css/                <span class="comment">← مجلد ملفات CSS (لاحقاً)</span>
+│   └── style.css
+├── js/                 <span class="comment">← مجلد ملفات JS (لاحقاً)</span>
+│   └── script.js
+└── README.md           <span class="comment">← وصف المشروع</span></code></pre>
+            </div>
+
+            <div class="analogy-box">
+                <h3>💡 تشبيه من الحياة</h3>
+                <ul class="analogy-list">
+                    <li><strong>index.html</strong> = باب البيت الرئيسي</li>
+                    <li><strong>images/</strong> = ألبوم الصور</li>
+                    <li><strong>css/</strong> = دولاب الملابس (التصميم)</li>
+                    <li><strong>js/</strong> = صندوق الأدوات (التفاعل)</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ قواعد الأسماء</h4>
+                <p>1. استخدم <strong>أحرف صغيرة فقط</strong> (lowercase).</p>
+                <p>2. افصل بين الكلمات بـ <strong>dash</strong> (-) مش underscore (_) أو مسافة.</p>
+                <p>3. <strong>ممنوع المسافات</strong> في أسماء الملفات.</p>
+                <p>4. الصفحة الرئيسية لازم اسمها <code class="inline">index.html</code>.</p>
+            </div>
+
+            <div class="card">
+                <h3>🔹 أنواع المسارات (Paths)</h3>
+                <table class="element-table">
+                    <thead>
+                        <tr>
+                            <th>النوع</th>
+                            <th>المعنى</th>
+                            <th>مثال</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Relative</strong></td>
+                            <td>مسار نسبي من الملف الحالي</td>
+                            <td><code>images/photo.jpg</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Absolute</strong></td>
+                            <td>رابط كامل من الإنترنت</td>
+                            <td><code>https://...</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Parent</strong></td>
+                            <td>الرجوع لمجلد أعلى</td>
+                            <td><code>../images/photo.jpg</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ========== Debugging Activity ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🐛</div>
+                <span>Debugging — اكتشف الأخطاء</span>
+            </h2>
+
+            <div class="debug-box">
+                <h3>🔍 نشاط: اكتشف الأخطاء في الكود ده</h3>
+                <p>الكود ده فيه <strong>5 أخطاء شائعة</strong>. حاول تلاقيهم قبل ما تشوف الحل.</p>
+
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">كود فيه أخطاء ❌</span>
+                        <div class="code-dots"><span></span><span></span><span></span></div>
+                    </div>
+<pre><code><span class="tag">&lt;h1&gt;</span><span class="text">مرحباً</span>
+<span class="tag">&lt;p&gt;</span><span class="text">دي فقرة</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"photo.jpg"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"https://google.com"</span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+    <span class="tag">&lt;li&gt;</span><span class="text">HTML</span>
+    <span class="text">CSS</span>
+<span class="tag">&lt;/ul&gt;</span></code></pre>
+                </div>
+
+                <div class="debug-comparison">
+                    <div class="debug-wrong">
+                        <div class="debug-label">❌ الأخطاء</div>
+                        <pre><code style="font-size: 0.85rem;">1. h1 مقفولش
+2. img مفيش alt
+3. a مفيش جواه text
+4. li التاني مفيش tag
+5. ul مقفولة صح بس li لا</code></pre>
+                    </div>
+                    <div class="debug-right">
+                        <div class="debug-label">✅ الكود الصحيح</div>
+                        <pre><code style="font-size: 0.85rem;"><span class="tag">&lt;h1&gt;</span><span class="text">مرحباً</span><span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;p&gt;</span><span class="text">دي فقرة</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"photo.jpg"</span>
+     <span class="attr">alt</span>=<span class="value">"وصف"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"..."</span><span class="tag">&gt;</span><span class="text">رابط</span><span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="text">HTML</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="text">CSS</span><span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== Mini Project ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🎨</div>
+                <span>مشروع المحاضرة: My Hobby</span>
+            </h2>
+
+            <div class="card">
+                <h3>📋 المطلوب</h3>
+                <p>ابني صفحة <strong>"My Favorite Hobby"</strong> عن هوايتك المفضلة تحتوي على:</p>
+                <ul style="list-style: none; padding-right: 0; margin-top: 15px;">
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> عنوان رئيسي <code class="inline">&lt;h1&gt;</code> باسم الهواية</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> فقرة تعريفية <code class="inline">&lt;p&gt;</code> فيها شرح</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> عنوان فرعي <code class="inline">&lt;h2&gt;</code> "ليه بحبها"</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> قائمة <code class="inline">&lt;ul&gt;</code> فيها 3 أسباب</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> عنوان فرعي <code class="inline">&lt;h2&gt;</code> "خطوات البداية"</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> قائمة مرتبة <code class="inline">&lt;ol&gt;</code> فيها 4 خطوات</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> صورة <code class="inline">&lt;img&gt;</code> تمثل الهواية مع alt</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> رابط <code class="inline">&lt;a&gt;</code> لموقع مفيد عن الهواية</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> تعليقات <code class="inline">&lt;!-- --&gt;</code> لتنظيم الكود</li>
+                </ul>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">مثال للحل</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="value">"ar"</span> <span class="attr">dir</span>=<span class="value">"rtl"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">هوايتي المفضلة</span><span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+
+    <span class="comment">&lt;!-- العنوان الرئيسي --&gt;</span>
+    <span class="tag">&lt;h1&gt;</span><span class="text">القراءة</span><span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span>
+        <span class="text">القراءة هي </span><span class="tag">&lt;strong&gt;</span><span class="text">هوايتي المفضلة</span><span class="tag">&lt;/strong&gt;</span>
+        <span class="text">، بحب أقرأ كتب متنوعة في مواضيع كتير.</span>
+    <span class="tag">&lt;/p&gt;</span>
+
+    <span class="comment">&lt;!-- ليه بحب القراءة --&gt;</span>
+    <span class="tag">&lt;h2&gt;</span><span class="text">ليه بحب القراءة؟</span><span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;ul&gt;</span>
+        <span class="tag">&lt;li&gt;</span><span class="text">بيوسّع المعرفة</span><span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span><span class="text">بتحسّن التركيز</span><span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span><span class="text">بتقلل التوتر</span><span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;/ul&gt;</span>
+
+    <span class="comment">&lt;!-- خطوات البداية --&gt;</span>
+    <span class="tag">&lt;h2&gt;</span><span class="text">خطوات البداية</span><span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;ol&gt;</span>
+        <span class="tag">&lt;li&gt;</span><span class="text">اختار كتاب يناسب اهتمامك</span><span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span><span class="text">حدد وقت يومي للقراءة</span><span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span><span class="text">ابدأ بـ 15 دقيقة يومياً</span><span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span><span class="text">سجّل ملاحظاتك</span><span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;/ol&gt;</span>
+
+    <span class="comment">&lt;!-- صورة --&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"images/books.jpg"</span> <span class="attr">alt</span>=<span class="value">"مجموعة كتب"</span><span class="tag">&gt;</span>
+
+    <span class="comment">&lt;!-- رابط مفيد --&gt;</span>
+    <span class="tag">&lt;p&gt;</span>
+        <span class="text">لمزيد من الكتب: </span>
+        <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"https://goodreads.com"</span> <span class="attr">target</span>=<span class="value">"_blank"</span> <span class="attr">rel</span>=<span class="value">"noopener"</span><span class="tag">&gt;</span>
+            <span class="text">Goodreads</span>
+        <span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/p&gt;</span>
+
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+            </div>
+        </section>
+
+        <!-- ========== Summary ========== -->
+        <section>
+            <div class="summary-box">
+                <h3>📌 ملخص المحاضرة</h3>
+                <ul class="summary-list">
+                    <li>Element = Tag + Content + Closing Tag</li>
+                    <li>Attribute = معلومات إضافية جوه Opening Tag</li>
+                    <li>Headings من h1 لـ h6 — h1 مرة واحدة في الصفحة</li>
+                    <li>Paragraphs &lt;p&gt; + عناصر النص: strong, em, mark, br, hr</li>
+                    <li>Lists: ul (غير مرتبة)، ol (مرتبة)، li (العنصر)</li>
+                    <li>Links &lt;a&gt; مع href, target, title, rel</li>
+                    <li>Images &lt;img&gt; مع src, alt (إلزامي)، width, height</li>
+                    <li>Comments &lt;!-- --&gt; لتنظيم الكود</li>
+                    <li>تنظيم الملفات: index.html + images/ + css/ + js/</li>
+                    <li>أسماء الملفات: lowercase + dash، بدون مسافات</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ========== Next Lecture ========== -->
+        <section>
+            <div class="next-box">
+                <h3>🚀 المحاضرة الجاية</h3>
+                <p>هننتقل لمستوى أعلى: <strong>Semantic HTML</strong></p>
+                <p>هنشوف إزاي نستخدم عناصر زي Header, Nav, Main, Section, Article, Footer عشان نبني صفحة منظمة ومحترفة، ونتكلم كمان عن Accessibility و SEO.</p>
+                <span class="next-topic">المحاضرة القادمة: Semantic HTML</span>
+            </div>
+        </section>
+
+        <!-- ========== Quiz Section ========== -->
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <div class="quiz-header-icon">❓</div>
+                <div>
+                    <h2>أسئلة اختيار من متعدد</h2>
+                    <p>10 أسئلة لاختبار فهمك لمحتوى المحاضرة</p>
+                </div>
+            </div>
+
+            <!-- Q1 -->
+            <div class="question">
+                <span class="question-number">سؤال 1</span>
+                <h4>ما هو الـ HTML Element؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> مجرد Opening Tag فقط</li>
+                    <li><span class="option-letter">ب</span> Opening Tag + Content + Closing Tag</li>
+                    <li><span class="option-letter">ج</span> Attribute داخل الـ Tag</li>
+                    <li><span class="option-letter">د</span> ملف CSS منفصل</li>
+                </ul>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question">
+                <span class="question-number">سؤال 2</span>
+                <h4>كم مرة يجب استخدام &lt;h1&gt; في الصفحة الواحدة؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> أي عدد من المرات</li>
+                    <li><span class="option-letter">ب</span> مرتين على الأقل</li>
+                    <li><span class="option-letter">ج</span> مرة واحدة فقط</li>
+                    <li><span class="option-letter">د</span> ممنوع استخدامه</li>
+                </ul>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question">
+                <span class="question-number">سؤال 3</span>
+                <h4>ما هو الفرق بين &lt;strong&gt; و &lt;b&gt;؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> مفيش فرق، الاتنين نفس الحاجة</li>
+                    <li><span class="option-letter">ب</span> &lt;strong&gt; ليه معنى دلالي (مهم)، &lt;b&gt; مجرد تنسيق</li>
+                    <li><span class="option-letter">ج</span> &lt;b&gt; أفضل من &lt;strong&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;strong&gt; للـ CSS بس</li>
+                </ul>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question">
+                <span class="question-number">سؤال 4</span>
+                <h4>أي عنصر بيستخدم لإنشاء سطر جديد داخل فقرة؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;hr&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;br&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;newline&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;break&gt;</li>
+                </ul>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question">
+                <span class="question-number">سؤال 5</span>
+                <h4>ما هو العنصر المستخدم لإنشاء قائمة غير مرتبة؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;ol&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;dl&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;ul&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;list&gt;</li>
+                </ul>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question">
+                <span class="question-number">سؤال 6</span>
+                <h4>أي Attribute في عنصر &lt;a&gt; يحدد عنوان الرابط؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> src</li>
+                    <li><span class="option-letter">ب</span> link</li>
+                    <li><span class="option-letter">ج</span> href</li>
+                    <li><span class="option-letter">د</span> url</li>
+                </ul>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question">
+                <span class="question-number">سؤال 7</span>
+                <h4>ليه Attribute "alt" في &lt;img&gt; مهم جداً؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> لتحديد حجم الصورة</li>
+                    <li><span class="option-letter">ب</span> لـ Accessibility و SEO و Fallback</li>
+                    <li><span class="option-letter">ج</span> لتحديد لون الصورة</li>
+                    <li><span class="option-letter">د</span> اختياري ومش مهم</li>
+                </ul>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question">
+                <span class="question-number">سؤال 8</span>
+                <h4>أي من العناصر دي Self-Closing (مش محتاج Closing Tag)؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;p&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;div&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;img&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;a&gt;</li>
+                </ul>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question">
+                <span class="question-number">سؤال 9</span>
+                <h4>ما هو الاسم الصحيح للصفحة الرئيسية في أي مشروع؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> home.html</li>
+                    <li><span class="option-letter">ب</span> main.html</li>
+                    <li><span class="option-letter">ج</span> index.html</li>
+                    <li><span class="option-letter">د</span> start.html</li>
+                </ul>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question">
+                <span class="question-number">سؤال 10</span>
+                <h4>أي من أسماء الملفات دي صحيحة حسب Best Practices؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> My Photo.jpg</li>
+                    <li><span class="option-letter">ب</span> my_photo.jpg</li>
+                    <li><span class="option-letter">ج</span> my-photo.jpg</li>
+                    <li><span class="option-letter">د</span> MY-PHOTO.JPG</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ========== Homework Section ========== -->
+        <section class="homework-section">
+            <div class="homework-header">
+                <div class="homework-header-icon">📝</div>
+                <div>
+                    <h2>واجبات المحاضرة</h2>
+                    <p>5 مسائل تطبيقية متدرجة لتثبيت ما تعلمته</p>
+                </div>
+            </div>
+
+            <!-- HW1 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الأول: بطاقة تعريف</h4>
+                <p>ابني صفحة HTML بسيطة فيها:</p>
+                <ul>
+                    <li>عنوان رئيسي &lt;h1&gt; فيه اسمك</li>
+                    <li>عنوان فرعي &lt;h2&gt; فيه عمرك أو دراستك</li>
+                    <li>فقرة &lt;p&gt; فيها جملة تعريفية عنك</li>
+                    <li>فقرة تانية فيها هواياتك (استخدم &lt;strong&gt; و &lt;em&gt;)</li>
+                </ul>
+            </div>
+
+            <!-- HW2 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الثاني: قائمة التسوق</h4>
+                <p>ابني صفحة "قائمة التسوق" تحتوي على:</p>
+                <ul>
+                    <li>عنوان رئيسي "قائمة التسوق"</li>
+                    <li>قائمة غير مرتبة &lt;ul&gt; فيها 8 عناصر على الأقل</li>
+                    <li>قائمة مرتبة &lt;ol&gt; فيها خطوات الدفع في الكاشير (4 خطوات)</li>
+                    <li>استخدم &lt;strong&gt; في اسم أهم عنصر</li>
+                </ul>
+            </div>
+
+            <!-- HW3 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الثالث: صفحة مفضلاتي</h4>
+                <p>ابني صفحة فيها 3 أقسام (استخدم &lt;h2&gt; لكل قسم):</p>
+                <ul>
+                    <li>قسم "أفلامي المفضلة" — قائمة &lt;ul&gt; فيها 3 أفلام</li>
+                    <li>قسم "كتبي المفضلة" — قائمة &lt;ul&gt; فيها 3 كتب</li>
+                    <li>قسم "مواقعي المفضلة" — 3 روابط &lt;a&gt; لمواقع مفيدة</li>
+                    <li>كل رابط يفتح في Tab جديدة (target="_blank")</li>
+                </ul>
+            </div>
+
+            <!-- HW4 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الرابع: معرض صور</h4>
+                <p>ابني صفحة "معرض صوري" تحتوي على:</p>
+                <ul>
+                    <li>عنوان رئيسي "معرض صوري"</li>
+                    <li>4 صور على الأقل من مجلد images/</li>
+                    <li>كل صورة ليها alt وصفي مناسب</li>
+                    <li>كل صورة تحتها &lt;p&gt; فيه وصف صغير</li>
+                    <li>استخدم &lt;hr&gt; للفصل بين كل صورة والتانية</li>
+                </ul>
+            </div>
+
+            <!-- HW5 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الخامس: التحدي — صفحة مدينة</h4>
+                <p>ابني صفحة كاملة عن مدينة تحبها تجمع كل اللي اتعلمته:</p>
+                <ul>
+                    <li>عنوان رئيسي &lt;h1&gt; باسم المدينة</li>
+                    <li>فقرة تعريفية فيها معلومات أساسية</li>
+                    <li>عنوان &lt;h2&gt; "أشهر المعالم" + قائمة &lt;ul&gt; فيها 4 معالم</li>
+                    <li>عنوان &lt;h2&gt; "أشهر الأكلات" + قائمة &lt;ol&gt; فيها 3 أكلات</li>
+                    <li>صورة للمدينة مع alt وصفي</li>
+                    <li>رابط لصفحة Wikipedia عن المدينة</li>
+                    <li>رابط لفيديو يوتيوب عن المدينة</li>
+                    <li>استخدم تعليقات &lt;!-- --&gt; لتنظيم الكود</li>
+                    <li>نظم الملفات: index.html + images/ folder</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ========== Footer ========== -->
+    <footer>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">S</div>
+                <span>Sunshine T Academy</span>
+            </div>
+            <p>Frontend Level 1 — HTML + CSS</p>
+            <p>بنحوّل الحلم لكود ☀️</p>
+            <p class="motto">HTML Elements • Content • File Organization</p>
+        </div>
+    </footer>
+
+</body>
+</html>
